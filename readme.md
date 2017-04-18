@@ -47,14 +47,20 @@ http://drupal.eyinnovation.com/api/ask?question=%7B%0A++%22query%22+%3A+%5B+%7B%
 ```
 
 
+### References:
+
+ - https://www.eyinnovation.com/ - Existing Adobe implimentation.
+
+
+
 ## TODO
 COMPLETE:
 x - NO TICKET -- Docker -- Setup Drupal with Docker.
 x - NO TICKET -- Drupal -- Setup Drupal Server with Composer.
+x - NO TICKET -- Docker -- Setup SOLR to interface with D8.
+    - `Search API Module`, `Search API SOLR`, Copy SOLR conf from search API solr module.
 
 IN PROGRESS:
-- NO TICKET -- Docker -- Setup SOLR to interface with D8.
-    - `Search API Module`, `Search API SOLR`, Copy SOLR conf from search API solr module.
 - NO TICKET -- Drupal -- Custom Module to search and return Alexa result.
 - NO TICKET -- Drupal -- CKEditor Plugin to mark Alexa content.
 
