@@ -81,3 +81,9 @@ Update:
 Add Contrib Modules:
 `composer require drupal/module_name 8.1.*@dev`
 
+
+## SOLR
+
+Requires: Search API, SOLR Search API.
+
+__Use `solr` as the host___ when configuring Drupal to talk to SOLR.
