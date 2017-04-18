@@ -1,0 +1,7 @@
+npd_alexa:
+  path: '/api/v1/alexa'
+  defaults:
+    _controller: '\Drupal\npd_alexa\Controller\AlexaApiController::alexaRequest'
+    _title: ''
+  requirements:
+    _permission: 'access content'

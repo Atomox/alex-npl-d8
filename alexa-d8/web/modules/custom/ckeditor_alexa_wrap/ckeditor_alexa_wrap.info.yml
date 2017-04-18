@@ -1,0 +1,8 @@
+name: CKEditor Alexa Wrap
+type: module
+description: A plugging for CKEditor to wrap Alexa responses on a ckeditor field.
+package: CKEditor
+core: '8.x'
+version: VERSION
+dependencies:
+  - ckeditor

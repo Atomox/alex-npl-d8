@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+/**
+function HOOK_page_attachments_alter(array &$page) {
+	$page['#attached']['library'][] = 'ckeditor_alexa_wrap/ckeditor_alexa_wrap';
+}
+*/

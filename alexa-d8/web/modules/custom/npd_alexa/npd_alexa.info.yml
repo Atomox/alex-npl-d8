@@ -1,0 +1,7 @@
+name: NPD Alexa
+type: module
+description: Expose an endpoint for Alexa to interact with Drupal 8.
+package: NPD
+core: '8.x'
+version: VERSION
+dependencies:

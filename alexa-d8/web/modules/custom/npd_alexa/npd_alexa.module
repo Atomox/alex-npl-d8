@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ *
+ * Defines the NPD-Alexa module.
+ */
+
+/**
+ * Impliments hook_node_presave().
+ *
+ * @param stdClass $node
+ *   The node being saved.
+ */
+function npd_alexa_node_presave($node) {
+//	watchdog(1, 'Hi dad!');
+//	syslog(1, '>>>' . print_r($node, TRUE));
+	// Logs a notice
+	Drupal::logger('npd_alexa')->notice('Hi dad.');
+}
