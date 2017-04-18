@@ -1,0 +1,9 @@
+name: Alexa
+type: theme
+description: 'A custom theme for the EY Drupal presentation'
+core: 8.x
+libraries:
+regions:
+  header: Header
+  content: Content
+  footer: Footer
