@@ -59,21 +59,30 @@ x - NO TICKET -- Docker -- Setup Drupal with Docker.
 x - NO TICKET -- Drupal -- Setup Drupal Server with Composer.
 x - NO TICKET -- Docker -- Setup SOLR to interface with D8.
     - `Search API Module`, `Search API SOLR`, Copy SOLR conf from search API solr module.
+x - NO TICKET -- Docker -- SASS watch/compiling.
+x - NO TICKET -- Drupal -- Setup Devel
 
 IN PROGRESS:
 - NO TICKET -- Drupal -- Custom Module to search and return Alexa result.
-- NO TICKET -- Drupal -- CKEditor Plugin to mark Alexa content.
+- NO TICKET -- Theme -- Setup Drupal Theme.
 
 BACKLOG:
-- NO TICKET -- Drupal -- Setup Drush
-- NO TICKET -- Drupal -- Setup Devel
+
+BLOCKER:
+- NO TICKET -- Alexa -- Setup Tomcat and NLP App.
+- NO TICKET -- SERVER -- Setup PROD server.
+
+CRITICAL:
+
+MAJOR:
 - NO TICKET -- Drupal -- Content Types: Break out Alexa response into individual nodes:
     - each will have a `response`, `search context`, `node reference`.
 - NO TICKET -- Drupal -- Better page formats to handle site structure.
+- NO TICKET -- Drupal -- CKEditor Plugin to mark Alexa content.
 
-- NO TICKET -- Alexa -- Setup Tomcat and NLP App.
-- NO TICKET -- SERVER -- Setup PROD server.
-- NO TICKET -- Theme -- Setup Drupal Theme.
+MINOR:
+- NO TICKET -- Drupal -- Setup Drush
+
 
 
 ## Installation
