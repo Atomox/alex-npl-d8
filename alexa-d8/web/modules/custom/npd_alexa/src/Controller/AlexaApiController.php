@@ -150,6 +150,60 @@ class AlexaApiController {
 			Throw new Exception('No terms to process!');
 		}
 
+
+
+
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ 
+
+
+
+
+
+
+
+			@TODO
+
+
+			   IN PROGRESS.
+
+
+			   Work on multi-word search term (wrap with quotes)
+
+			   WORK ON "AND" query behavior.
+
+
+
+
+
+
+
+
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * 
+ */
+
+
+
+
 		foreach ($terms AS $key => $weight) {
 			if (explode(" ", $key)) {
 				$key = '"' . $key . '"';
