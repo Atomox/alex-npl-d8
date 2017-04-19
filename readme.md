@@ -101,12 +101,10 @@ Add Contrib Modules:
 
 Requires: Search API, SOLR Search API.
 
-__Use `solr` as the host___ when configuring Drupal to talk to SOLR.
+__Use `solr` as the host__ when configuring Drupal to talk to SOLR.
 
 
-
-
-## Questions:
+## Alexa Questions from Adobe Version:
 
 - Does EY provide digital technology assessments?
 - How is the Adobe Marketing Cloud being used to drive personalization
