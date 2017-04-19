@@ -93,3 +93,19 @@ Add Contrib Modules:
 Requires: Search API, SOLR Search API.
 
 __Use `solr` as the host___ when configuring Drupal to talk to SOLR.
+
+
+
+
+## Questions:
+
+- Does EY provide digital technology assessments?
+- How is the Adobe Marketing Cloud being used to drive personalization
+- Tell me about the sharing economy business model.
+- How are industrial mashups affecting the digital economy?
+- What are some potentials of blockchain technology?
+- How much money did EY make last year?
+- Tell me about EY Society
+- What is EY's Focus
+- Tell me about NorthPoint's strength and experience.
+- What are EY's Adobe analytics offerings?
