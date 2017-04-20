@@ -5,6 +5,8 @@ namespace Drupal\npd_alexa\Controller;
 // use Drupal\npd_alexa\Utility\SomethingTemplateTrait;
 use Symfony\Component\HttpFoundation\Response;
 
+class AlexaException extends \Exception {};
+
 class AlexaApiController {
 	// use SomethingTemplateTrait;
 
@@ -42,23 +44,37 @@ class AlexaApiController {
 	 */
 	public function alexaRequest() {
 
-		if (isset($_POST['question'])) {
-			return $_POST;
-			$params = json_decode($_POST['question']);
-		}
-		elseif (isset($_GET['question'])) {
-			$params = json_decode($_GET['question']);
-		}
-		else {
-			Throw new Exception('No question detected.');
-		}
+//		Throw new \Exception(print_r(json_decode($_GET['question']), TRUE));
 
-		$answer = $this->findAlexaResponse($params);
+		try {
+			if (isset($_POST['question'])) {
+				return $_POST;
+				$params = json_decode($_POST['question']);
+			}
+			elseif (isset($_GET['question'])) {
+				$params = json_decode($_GET['question']);
+			}
+			else {
+				Throw new AlexaException('No question detected.');
+			}
 
-		$response = new Response();
-		$response->setContent(json_encode($answer));
-		$response->headers->set('Content-Type', 'application/json');
-		return $response;
+			$answer = $this->findAlexaResponse($params);
+/**
+			$answer = [
+			  "value" => "Ben Helmer enjoys photography.",
+			  "status" => 0
+			];
+*/
+
+			$response = new Response();
+			$response->setContent(json_encode($answer));
+			$response->headers->set('Content-Type', 'application/json');
+
+			return $response;
+		}
+		catch (AlexaException $e) {
+			Throw new \Exception(' >>> ' . $e->getMessage());
+		}
 	}
 
 
@@ -77,11 +93,13 @@ class AlexaApiController {
 		// Get our terms to search.
 		$terms = $this->filterAlexaRequest($question);
 
+		// Build a query string.
 		$query = $this->assembleSolrQuery($terms);
 
 		// Perform the search.
 		$result = $this->getSolrResponse($query);
 
+		// Clean up the response.
 		$analysis = $this->analyzeSolrResponse($result);
 
 		if ($analysis !== FALSE) {
@@ -147,7 +165,7 @@ class AlexaApiController {
 		$q = array();
 
 		if (empty($terms)) {
-			Throw new Exception('No terms to process!');
+			Throw new AlexaException('No terms to process!');
 		}
 
 
@@ -260,19 +278,20 @@ class AlexaApiController {
 			$response = json_decode($response);
 
 			if (!isset($response->response)) {
-				Throw new Exception('No response returned from SOLR.');
+				Throw new AlexaException('No response returned from SOLR.');
 			}
 
 			if ($response->response->numFound > 0) {
 				return $this->formatResponseAnalysis($response->response->docs);
 			}
 		}
-		catch (Exception $e) {
+		catch (AlexaException $e) {
 			/**
 			 
 			   @TODO
 			 
 			 */
+			dsm($e->getMessage());
 		}
 
 		return false;
@@ -321,14 +340,14 @@ class AlexaApiController {
 	protected function filterAlexaRequest($terms) {
 		try {
 			if (!isset($terms->query)) {
-				Throw new Exception('Expected request with query key.');
+				Throw new AlexaException('Expected request with query key.');
 			}
 
 			$results = array();
 
 			foreach ($terms->query AS $term) {
 				if (!isset($term->weight) || !isset($term->word)) {
-					Throw new Exception("Expected term with weight, found: " . print_r($term, TRUE));
+					Throw new AlexaException("Expected term with weight, found: " . print_r($term, TRUE));
 				}
 				else if ($term->weight > 0) {
 					$results[$term->word] = $term->weight;
@@ -340,12 +359,15 @@ class AlexaApiController {
 
 			return $results;
 		}
-		catch (Exception $e) {
+		catch (AlexaException $e) {
 			/**
 			 
 			   @TODO
 			 
 			 */
+			
+			Throw new \Exception(' >>> ' . $e->getMessage());
+
 			return ' >>> ' . $e->getMessage();
 		}
 	}

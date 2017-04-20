@@ -5,3 +5,12 @@ npd_alexa:
     _title: ''
   requirements:
     _permission: 'access content'
+
+# Must have .form on the end to be recognized by Drupal.
+npd_alexa_admin.form:
+  path: '/api/v1/alexa/admin/search'
+  defaults:
+    _form: '\Drupal\npd_alexa\Form\AlexaAdminSearchForm'
+    _title: 'Alexa Drupal Admin Search'
+  requirements:
+    _permission: 'access content'
