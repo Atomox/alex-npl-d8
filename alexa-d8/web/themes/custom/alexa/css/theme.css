@@ -3158,84 +3158,84 @@ li {
     opacity: 1;
   }
 }
-.no-touch .launchpad ul li a:hover span {
+.launchpad ul li a:hover span {
   color: #000000;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad ul li a:hover span {
+  .launchpad ul li a:hover span {
     opacity: 1;
   }
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad ul li a:hover {
+  .launchpad ul li a:hover {
     background-color: transparent;
   }
 }
-.no-touch .launchpad ul li:first-child {
+.launchpad ul li:first-child {
   background-image: url("../icons/bubble-1.png");
 }
-.no-touch .launchpad ul li:first-child:hover {
+.launchpad ul li:first-child:hover {
   background-image: url("../icons/bubble-1-on.png");
 }
-.no-touch .launchpad ul li:nth-child(2) {
+.launchpad ul li:nth-child(2) {
   background-image: url("../icons/bubble-2.png");
 }
-.no-touch .launchpad ul li:nth-child(2):hover {
+.launchpad ul li:nth-child(2):hover {
   background-image: url("../icons/bubble-2-on.png");
 }
-.no-touch .launchpad ul li:nth-child(3) {
+.launchpad ul li:nth-child(3) {
   background-image: url("../icons/bubble-3.png");
 }
-.no-touch .launchpad ul li:nth-child(3):hover {
+.launchpad ul li:nth-child(3):hover {
   background-image: url("../icons/bubble-3-on.png");
 }
-.no-touch .launchpad ul li:nth-child(4) {
+.launchpad ul li:nth-child(4) {
   background-image: url("../icons/bubble-4.png");
 }
-.no-touch .launchpad ul li:nth-child(4):hover {
+.launchpad ul li:nth-child(4):hover {
   background-image: url("../icons/bubble-4-on.png");
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad ul li:hover {
+  .launchpad ul li:hover {
     background-image: none !important;
   }
 }
-.no-touch .launchpad .textimage {
+.launchpad .textimage {
   display: none;
   padding: 1rem;
   text-align: center;
 }
-.no-touch .launchpad .textimage img {
+.launchpad .textimage img {
   display: none;
 }
-.no-touch .launchpad .textimage .textimage-text {
+.launchpad .textimage .textimage-text {
   position: relative;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad .textimage .textimage-text {
+  .launchpad .textimage .textimage-text {
     position: absolute;
     top: 0;
     width: 100%;
   }
 }
-.no-touch .launchpad .textimage .textimage-text a {
+.launchpad .textimage .textimage-text a {
   transition: all 0.5s;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad .textimage .textimage-text a {
+  .launchpad .textimage .textimage-text a {
     opacity: 0;
     position: absolute;
   }
 }
-.no-touch .launchpad .textimage .textimage-text a.on {
+.launchpad .textimage .textimage-text a.on {
   color: #000000;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad .textimage .textimage-text a.on {
+  .launchpad .textimage .textimage-text a.on {
     opacity: 1;
   }
 }
-.no-touch .launchpad .textimage .textimage-top a {
+.launchpad .textimage .textimage-top a {
   background-size: 85px auto;
   height: 85px;
   width: 85px;
@@ -3244,54 +3244,54 @@ li {
   transition: all 0.5s;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad .textimage .textimage-top a {
+  .launchpad .textimage .textimage-top a {
     opacity: 1;
   }
 }
-.no-touch .launchpad .textimage .textimage-top a:hover {
+.launchpad .textimage .textimage-top a:hover {
   background-color: #ffe600;
 }
 @media only screen and (max-width: 1199px) {
-  .no-touch .launchpad .textimage .textimage-top a:hover {
+  .launchpad .textimage .textimage-top a:hover {
     background-color: transparent;
     opacity: 0;
   }
 }
-.no-touch .launchpad .textimage:first-child .textimage-top a {
+.launchpad .textimage:first-child .textimage-top a {
   background-image: url("../icons/bubble-1.png");
 }
-.no-touch .launchpad .textimage:nth-child(2) .textimage-top a {
+.launchpad .textimage:nth-child(2) .textimage-top a {
   background-image: url("../icons/bubble-2.png");
 }
-.no-touch .launchpad .textimage:nth-child(3) .textimage-top a {
+.launchpad .textimage:nth-child(3) .textimage-top a {
   background-image: url("../icons/bubble-3.png");
 }
-.no-touch .launchpad .textimage:nth-child(4) .textimage-top a {
+.launchpad .textimage:nth-child(4) .textimage-top a {
   background-image: url("../icons/bubble-4.png");
 }
-.no-touch .launchpad .textimage:first-child .textimage-top a:hover {
+.launchpad .textimage:first-child .textimage-top a:hover {
   background-image: url("../icons/bubble-1-on.png");
 }
-.no-touch .launchpad .textimage:nth-child(2) .textimage-top a:hover {
+.launchpad .textimage:nth-child(2) .textimage-top a:hover {
   background-image: url("../icons/bubble-2-on.png");
 }
-.no-touch .launchpad .textimage:nth-child(3) .textimage-top a:hover {
+.launchpad .textimage:nth-child(3) .textimage-top a:hover {
   background-image: url("../icons/bubble-3-on.png");
 }
-.no-touch .launchpad .textimage:nth-child(4) .textimage-top a:hover {
+.launchpad .textimage:nth-child(4) .textimage-top a:hover {
   background-image: url("../icons/bubble-4-on.png");
 }
-.no-touch .description .text {
+.description .text {
   color: rgba(0, 0, 0, 0);
   text-shadow: 0 0 0.5rem #ffffff;
   transition: all 0.5s;
 }
-.no-touch .description .text:hover {
+.description .text:hover {
   color: #ffffff;
   text-shadow: none;
   top: -0.25rem;
 }
-.no-touch .about ul li:hover {
+.about ul li:hover {
   background-color: transparent;
 }
 .spotlight {
