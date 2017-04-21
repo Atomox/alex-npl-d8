@@ -3944,6 +3944,10 @@ footer p {
   padding: 1rem;
   width: 100%;
 }
+#front-page .header-wrap {
+  position: absolute;
+  z-index: 1;
+}
 nav#block-alexa-main-menu .menu {
   float: right;
   list-style: none;
