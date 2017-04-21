@@ -2511,7 +2511,7 @@ div.personaController {
 @font-face {
   font-family: 'EYInterstate-L';
   src: url('../fonts/EYInterstate-LightBoldItalic.eot');
-  src: url('../fonts/EYInterstate-LightBoldItalic.eot?#iefix') format('embedded-opentype'),  url('../fonts/EYInterstate-LightBoldItalic.woff') format('woff'), url('fonts/EYInterstate-LightBoldItalic.ttf') format('truetype'), url('../fonts/EYInterstate-LightBoldItalic.svg#EYInterstate-LightBoldItalic') format('svg');
+  src: url('../fonts/EYInterstate-LightBoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/EYInterstate-LightBoldItalic.ttf') format('truetype'), url('../fonts/EYInterstate-LightBoldItalic.svg#EYInterstate-LightBoldItalic') format('svg');
   font-weight: 300;
   font-style: italic;
 }
@@ -2915,6 +2915,7 @@ li {
     letter-spacing: 1px;
   }
 }
+
 .eyi_hero .slide_wrapper .callout .text_label h3 {
   color: #ffffff;
   font-size: 120%;
@@ -2932,6 +2933,22 @@ li {
 }
 .eyi_hero .slide_wrapper .callout .text_label p i {
   font-style: italic;
+}
+@media only screen and (max-width: 640px) {
+  .eyi_hero .slide_wrapper .callout {
+    background:none;
+    left: 0
+  }
+  .eyi_hero .slide_wrapper .callout .text_label h2 {
+    font-size: 100%;
+  }
+  .eyi_hero .slide_wrapper .callout .text_label h1 {
+    font-size: 200%;
+    margin: 0;
+  }
+  .eyi_hero .slide_wrapper .callout .text_label {
+    padding: 0 3rem;
+  }
 }
 
 /* variables */
@@ -3138,7 +3155,7 @@ li {
   font-size: 150%;
   margin-top: -1rem;
   margin-bottom: -5rem;
-  padding: 4rem 15% 4rem;
+  padding: 4rem 5% 4rem;
   z-index: 0;
 }
 .description .text {
@@ -3171,6 +3188,12 @@ li {
     background-color: transparent;
   }
 }
+@media only screen and (max-width: 640px) {
+  .launchpad ul li a {
+    font-size: 14px;
+  }
+}
+
 .launchpad ul li:first-child {
   background-image: url("../icons/bubble-1.png");
 }
@@ -3948,6 +3971,14 @@ footer p {
   position: absolute;
   z-index: 1;
 }
+@media only screen and (max-width: 640px) {
+  #front-page .header-wrap {
+    position: relative;
+    background: #336699;
+    opacity: .9;
+  }
+}
+
 nav#block-alexa-main-menu .menu {
   float: right;
   list-style: none;
