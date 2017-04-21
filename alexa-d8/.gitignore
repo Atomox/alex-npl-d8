@@ -28,5 +28,9 @@ composer.lock
 alexa-d8/composer.lock
 
 **/.DS_Store
+<<<<<<< HEAD
 ../.DS_Store
 >>>>>>> bfd2e6f... added neede custom fonts, added all the styles from existin desings, created about page
+=======
+/.DS_Store
+>>>>>>> 5180781... images for the site, styling landing pages

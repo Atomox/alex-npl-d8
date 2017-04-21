@@ -2839,20 +2839,6 @@ li {
 
 /* variables */
 /* colors */
-.topnav {
-  float: right;
-}
-.topnav a {
-  border-bottom: 0.5rem solid transparent;
-  transform: all 0.2s;
-}
-.topnav a:hover {
-  border-color: #ffe600;
-  color: #000000;
-}
-
-/* variables */
-/* colors */
 /* ey innovation styles */
 .eyi_hero {
   position: relative;
@@ -2869,7 +2855,7 @@ li {
   opacity: 0.5;
 }
 .eyi_hero .slide_wrapper .callout {
-  background: transparent url("images/EYframe.png") left center no-repeat;
+  background: transparent url("../images/EYframe.png") left center no-repeat;
   background-size: 100%;
   display: flex;
   align-items: center;
@@ -3147,7 +3133,7 @@ li {
   background-image: url("../icons/bubble-4-on.png");
 }
 .description {
-  background: url("images/atomic.jpg") no-repeat;
+  background: url("../images/atomic.jpg") no-repeat;
   background-size: cover;
   font-size: 150%;
   margin-top: -1rem;
@@ -3335,7 +3321,7 @@ li {
 }
 footer {
   background-color: #333333;
-  background-image: url("images/EYlogo.png");
+  background-image: url("../images/EYlogo.png");
   background-position: 4rem 4rem;
   background-repeat: no-repeat;
   background-size: 10rem auto;
@@ -3942,10 +3928,41 @@ footer p {
 */  zoom: 100%;
 }
 
-.page__logo {
+.page__logo img {
+  width: 7rem;
 }
 
 .page__topnav {
+}
+.header-wrap {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 1rem;
+  width: 100%;
+}
+nav#block-alexa-main-menu .menu {
+  float: right;
+  list-style: none;
+  padding: 0 10px;
+  text-transform: capitalize;
+}
+nav#block-alexa-main-menu .menu .menu-item {
+  float: right;
+  list-style: none;
+  padding: 0 10px;
+  text-transform: capitalize;
+}
+nav#block-alexa-main-menu .menu .menu-item a {
+  border-bottom: 0.5rem solid transparent;
+}
+nav#block-alexa-main-menu .menu .menu-item a:hover,
+nav#block-alexa-main-menu .menu .menu-item--active-trail a.is-active {
+  border-color: #ffe600;
+  color: #000000;
 }
 .title.page-title {
   color: #333333;
@@ -3966,7 +3983,7 @@ footer p {
   url(../images/about-header.jpg);
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
   url(../images/about-header.jpg) 0 0/cover no-repeat;
-  height: 25vw;
+  height: 20vw;
   margin-bottom: 1vw;
 }
 @media only screen and (max-width: 640px) {
@@ -3978,8 +3995,11 @@ footer p {
     margin-top: 0;
   }
 }
-.page__footer {
+.site-footer {
   color: #fff;
+}
+.site-footer .page__copyright {
+  margin-bottom: 0;
 }
 
 /* Scale down too wide images from the parsys */
@@ -3987,9 +4007,6 @@ footer p {
   max-width: 100%;
 }
 
-.page__copyright {
-  margin-bottom: 0;
-}
 
 header,footer{
   position:relative;
@@ -4013,12 +4030,6 @@ header,footer{
  *  limitations under the License.
  */
 
-.topnav {
-    float: right;
-    list-style: none;
-    padding: 0 10px;
-    text-transform: capitalize;
-}
 .topnav__item {
     float: left;
     margin-left: 15px;
