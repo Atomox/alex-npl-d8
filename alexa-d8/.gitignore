@@ -21,4 +21,12 @@
 /.idea/
 
 # Ignore composer.lock
+<<<<<<< HEAD
 composer.lock
+=======
+composer.lock
+alexa-d8/composer.lock
+
+**/.DS_Store
+../.DS_Store
+>>>>>>> bfd2e6f... added neede custom fonts, added all the styles from existin desings, created about page

@@ -1,12 +1,14 @@
 name: Alexa
 type: theme
 description: 'A custom theme for the EY Drupal presentation'
-package: Core
+# package: Core
 core: 8.x
 regions:
   header: Header
+  primary_menu: 'Primary menu'
   content: Content
   footer: Footer
-
+base theme: classy
 libraries:
-  # - core/normalize
+  - core/normalize
+  - alexa/global-styling
