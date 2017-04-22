@@ -22,3 +22,7 @@
 
 # Ignore composer.lock
 composer.lock
+alexa-d8/composer.lock
+
+**/.DS_Store
+composer.lock
