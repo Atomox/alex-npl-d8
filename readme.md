@@ -61,18 +61,25 @@ x - NO TICKET -- Docker -- Setup SOLR to interface with D8.
     - `Search API Module`, `Search API SOLR`, Copy SOLR conf from search API solr module.
 x - NO TICKET -- Docker -- SASS watch/compiling.
 x - NO TICKET -- Drupal -- Setup Devel
+x - NO TICKET -- Alexa -- Setup Tomcat and NLP App.
+x - NO TICKET -- SERVER -- Setup PROD server.
 
 IN PROGRESS:
 - NO TICKET -- Drupal -- Custom Module to search and return Alexa result.
-- NO TICKET -- Theme -- Setup Drupal Theme.
 
 BACKLOG:
 
 BLOCKER:
-- NO TICKET -- Alexa -- Setup Tomcat and NLP App.
-- NO TICKET -- SERVER -- Setup PROD server.
+- NO TICKET -- Alexa -- Amazon config integration. Talk to NLP.
 
 CRITICAL:
+- NO TICKET -- Pull Annas Changes
+- NO TICKET -- Sample content from Jeff
+- NO TICKET -- Theme -- Setup Drupal Theme.
+
+- NO TICKET -- Lock down SOLR -- Password Protect? Route through Nginx?
+- NO Ticket -- Lock down 8080
+- No Ticket -- Lock down tomcat admin
 
 MAJOR:
 - NO TICKET -- Drupal -- Content Types: Break out Alexa response into individual nodes:
@@ -82,7 +89,7 @@ MAJOR:
 
 MINOR:
 - NO TICKET -- Drupal -- Setup Drush
-
+- NO TICKET -- SOLR -- Find config file for core definitions, and map as volume.
 
 
 ## Installation
