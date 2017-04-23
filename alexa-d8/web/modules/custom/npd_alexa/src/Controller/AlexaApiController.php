@@ -422,13 +422,15 @@ class AlexaApiController {
 
 		// Match all tags.
 		preg_match_all($pattern, $body, $matches);
-//		syslog(1, ' >>>>>>>>>>>>>>>>>>>>>>>>');
 
-//		if ($type == 'alexa') {
-//			syslog(1, ' > PREGMATCH ' . $type . ': ' . print_r($matches, TRUE));
-//		syslog(1, ' > PREGMATCH ' . $type . ' Pattern: ' . $pattern);
-//		syslog(1, ' >>>>>>>>>>>>>>>>>>>>>>>>');
-//		}
+/**
+		if ($type == 'alexa' || $type == 'h3') {
+			syslog(1, ' >>>>>>>>>>>>>>>>>>>>>>>>');
+			syslog(1, ' > PREGMATCH ' . $type . ': ' . print_r($matches, TRUE));
+			syslog(1, ' > PREGMATCH ' . $type . ' Pattern: ' . $pattern);
+			syslog(1, ' >>>>>>>>>>>>>>>>>>>>>>>>');
+		}
+*/
 
 		// If we had results, return them.
 		if (isset($matches[$answer_position])) {
@@ -501,9 +503,17 @@ class AlexaApiController {
 			'h1' => 15,
 			'h2' => 10,
 			'h3' => 5,
-			'alexa' => 5,
-			'bonus_score_all_terms' => 25
+			'alexa' => 0,
+			'bonus_score_all_terms' => 25,
+			'hint_multiplier' => 4,
+			'context_multiplier' => 0.5,
+			'combo_2' => 5,
+			'combo_3' => 8,
+			'combo_4' => 10,
+			'combo_5' => 15,
+			'combo_6' => 20,
 		);
+		$minimum_score_threshold = 10;
 		$response_score = array();
 		$top_score = 0;
 		$top_scorer = null;
@@ -515,7 +525,7 @@ class AlexaApiController {
 					$response_score[$type][$key] = 0;
 
 					$all_my_terms = true;
-
+					$terms_found_distinct = 0;
 					syslog(1, ' --> Scoring Response: ' . print_r($tags[$type][$key]['response'], TRUE));
 
 					// For each terms, find the number of occurances,
@@ -529,27 +539,40 @@ class AlexaApiController {
 
 						// Hints
 						if (isset($t['hints'])) {
-							$response_score[$type][$key] += $this->getResponseTermScore($t['hints'], $term, $weight, 2, $found_my_term);
+							$response_score[$type][$key] += $this->getResponseTermScore($t['hints'], $term, $weight, $score_chart['hint_multiplier'], $found_my_term);
 						}
 
 						// Context
 						if (isset($t['context'])) {
-							$response_score[$type][$key] += $this->getResponseTermScore($t['context'], $term, $weight, .5, $found_my_term);
+							$response_score[$type][$key] += $this->getResponseTermScore($t['context'], $term, $weight, $score_chart['context_multiplier'], $found_my_term);
 						}
 
-						if ($found_my_term === false && $weight > 1) {
-							$all_my_terms = false;
+						if ($weight > 1) {
+							if ($found_my_term === false) {
+								$all_my_terms = false;
+							}
+							else {
+								$terms_found_distinct++;
+							}
 						}
 					}
 
 					// If the score is more than mediocre, add weights based on the tag type.
 					if ($response_score[$type][$key] > 5 && isset($score_chart[$type])) {
-						syslog(1, '   >> ' . $type . ' Weight Bonus: +' . $score_chart[$type]);
+						syslog(1, '  >> ' . $type . ' Weight Bonus: +' . $score_chart[$type]);
 						$response_score[$type][$key] += $score_chart[$type];
+					}
+					// If multiple major words matched, add a bonus.
+					if ($terms_found_distinct > 1) {
+						if ($terms_found_distinct > 6) {
+							$terms_found_distinct = 6;
+						}
+						syslog(1, '  >> <!!> Weighted ' . $terms_found_distinct .  ' term combo! +' . $score_chart['combo_' . $terms_found_distinct]);
+						$response_score[$type][$key] += $score_chart['combo_' . $terms_found_distinct];
 					}
 					// If all major terms matched the response, add a bonus.
 					if ($all_my_terms === true) {
-						syslog(1, '   >> <!!!> Response had all terms. Bonus: +' . $bonus_score_all_terms);
+						syslog(1, '  >> <!!!> All terms found!!! +' . $score_chart['bonus_score_all_terms']);
 						$response_score[$type][$key] += $score_chart['bonus_score_all_terms'];
 					}
 
@@ -570,9 +593,13 @@ class AlexaApiController {
 		}
 
 		syslog(1, '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-		syslog(1, 'Final Scores: ' . print_r($response_score, TRUE));
+		if ($top_score >= $minimum_score_threshold) {
+			return $top_scorer;
+		}
 
-		return $top_scorer;
+		// Return the top scorer, unless none met minimum score standards.
+		syslog(1, ' > NO SUBSTANTIAL RESULTS FOUND. Highest score was: ' . $top_score);
+		return false;
 	}
 
 
@@ -585,7 +612,9 @@ class AlexaApiController {
 			return $score;
 		}
 
-		$found_term = false;
+		// Only maintain false. Don't swap if TRUE.
+		// Other request to this function may have already found this term.
+		$found_term = ($found_term === TRUE) ? true :false;
 		return $score;
 	}
 

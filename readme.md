@@ -111,6 +111,19 @@ Requires: Search API, SOLR Search API.
 __Use `solr` as the host__ when configuring Drupal to talk to SOLR.
 
 
+## Working Questions:
+
+About EY:
+
+ - Alexa, what is EY's Focus?
+ - What acquisitions has EY made in digital?
+
+HOME PAGE:
+
+ - What does EY Innovation showcase? (Hints: showcase)
+ - Alexa, how many smart objects will there be by 2020?
+
+
 ## Alexa Questions from Adobe Version:
 
 - Does EY provide digital technology assessments?
@@ -123,3 +136,16 @@ __Use `solr` as the host__ when configuring Drupal to talk to SOLR.
 - What is EY's Focus
 - Tell me about NorthPoint's strength and experience.
 - What are EY's Adobe analytics offerings?
+
+
+- Who is In Koo Kim
+- What is In Koo's number
+- What is In Koo's email.
+- Who is Jeff Penner
+- What is Jeff Penner's email
+- What is Jeff Penner's number
+- Who is Greg Jenko
+- What is Greg Jenko's number
+- What is Greg Jenko's email
+- What is EY innovation.
+- Tell me about EY innovation.
