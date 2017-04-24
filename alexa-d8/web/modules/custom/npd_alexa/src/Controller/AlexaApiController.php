@@ -100,13 +100,8 @@ class AlexaApiController {
 
 		syslog(1, ' > Terms: ' . print_r($terms, TRUE));
 
-		// Build a query string.
-		$query = $this->assembleSolrQuery($terms);
-
-		syslog(1, ' > SOLR Query: ' . print_r($query, TRUE));
-
-		// Perform the search.
-		$result = $this->getSolrResponse($query);
+		// Using our terms, query SOLR.
+		$result = $this->getSolrResults($terms);
 
 		// Clean up the response.
 		$analysis = $this->analyzeSolrResponse($result);
@@ -121,12 +116,52 @@ class AlexaApiController {
 		// Send the response.
 		return array(
 		  "value" => $final,
-		  "status" => ($result !== NULL) ? 0 : 1,
-		  "q" => $query,
-		  "question" => $question,
-		  "terms" => $terms,
+		  "status" => ($result !== NULL && $result !== false) ? 0 : 1,
 		);
 	}
+
+
+	protected function getSolrResults($terms) {
+
+		$max_score = 0;
+		$max_result = null;
+		$master_fields = [
+			'tm_rendered_item',
+			'spell',
+		];
+
+
+		foreach ($master_fields AS $field) {
+
+			$my_score = 0;
+
+			// Build a query string.
+			$query = $this->assembleSolrQuery($terms, $field);
+
+			// Perform the search.
+			$result = $this->getSolrResponse($query);
+
+			// Determine the max score.
+			$my_score = $this->getSolrResponseMaxScore($result);
+
+			// If this is a new record for max score, prefer it.
+			if ($my_score > $max_score) {
+				$max_score = $my_score;
+				$max_result = $result;
+			}
+		}
+
+		return $max_result;
+	}
+
+
+	protected function getSolrResponseMaxScore($result) {
+		// decode the response.
+		$response = json_decode($result);
+
+		return $response->response->maxScore;
+	}
+
 
 
 	/**
@@ -138,7 +173,7 @@ class AlexaApiController {
 	 * @return string
 	 *   A prepared SOLR search string/URL.
 	 */
-	protected function assembleSolrQuery($terms) {
+	protected function assembleSolrQuery($terms, $search_field) {
 
 		// http://ey-alexa.local:8983/solr/collection1/query
 		// http://solr:8983/solr/#/collection1
@@ -147,7 +182,9 @@ class AlexaApiController {
 		$port = '8983';
 		$core_path = 'solr';
 		$collection_path = 'collection1';
-		$master_solr_field = 'tm_rendered_item';
+		$master_solr_field = $search_field;
+//		$master_solr_field = 'spell';
+		$fl = '*' . '%20' .'score';
 
 		$q = 'http://' . $host . ':' . $port
 			. '/' . $core_path . '/' . $collection_path . '/'
@@ -156,7 +193,7 @@ class AlexaApiController {
 		// Get the main query terms.
 		$args = 'q=' . $this->assembleFieldTerms($master_solr_field, $terms);
 
-		return $q . $args . '&wt=json&indent=true&debugQuery=false&start=0';
+		return $q . $args . '&wt=json&indent=true&debugQuery=false&start=0' . '&fl=' . $fl;
 	}
 
 
@@ -179,60 +216,6 @@ class AlexaApiController {
 		if (empty($terms)) {
 			Throw new AlexaException('No terms to process!');
 		}
-
-
-
-
-/**
- *
- *
- *
- *
- *
- *
- *
- 
-
-
-
-
-
-
-
-			@TODO
-
-
-			   IN PROGRESS.
-
-
-			   Work on multi-word search term (wrap with quotes)
-
-			   WORK ON "AND" query behavior.
-
-
-
-
-
-
-
-
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- * 
- */
-
-
-
 
 		foreach ($terms AS $key => $weight) {
 			if (explode(" ", $key)) {
@@ -277,45 +260,65 @@ class AlexaApiController {
 		$entity = null;
 		$entity_field = null;
 
-		// Select the first result, and load the entity.
-		if (is_array($analysis) && isset($analysis[0])) {
-			syslog(1, ' > Select Alexa Response > Result: ' . print_r($analysis[0], TRUE));
+		try {
+
+			// Select the first result, and load the entity.
+			if (is_array($analysis) && isset($analysis[0])) {
+				syslog(1, ' > Select Alexa Response > Result: ' . print_r($analysis[0], TRUE));
 
 
-			switch ($analysis[0]['bundle']) {
+				switch ($analysis[0]['bundle']) {
 
-				case 'node':
-					syslog(1, ' > Loading node id: ' . $analysis[0]['id']);
-					$entity = node::load($analysis[0]['id']);
-					$entity_field = 'body';
+					case 'node':
+						syslog(1, ' > Loading node id: ' . $analysis[0]['id']);
+						$entity = node::load($analysis[0]['id']);
 
-					dsm($entity->title->value);
-					dsm($entity->body->value);
+						if ($analysis[0]['type'] == 'homepage') {
+							$entity_field = array(
+								'title',
+								'body',
+								"field_main_hero",
+								"field_middle_hero",
+							);
+						}
+						else {
+							$entity_field = array(
+								'title',
+								'body',
+							);
+						}
 
-					break;
+						break;
 
-				default:
-					syslog(1, ' > Select Alexa Response > Entity Type: ' . $analysis[0]['bundle']);
+					default:
+						syslog(1, ' > Select Alexa Response > Entity Type: ' . $analysis[0]['bundle']);
+				}
+			}
+
+			// Look at the body.
+			if ($entity !== null && $entity_field !== null) {
+				syslog(1, ' >> Loading node fields: ');
+				foreach ($entity_field AS $field) {
+					syslog(1, ' >> Loading node fields > Checking: ' . $field);
+					if (isset($entity->$field->value)) {
+						$response .= $entity->$field->value;
+					}
+				}
+			}
+			else {
+				syslog(1, ' > Error loading node: ' . $analysis[0]['id']);
+			}
+
+			// Check body for approprate response.
+			if ($response !== null) {
+				$response = $this->selectAlexaResponseContext($response, $terms);
+
+				return strip_tags($response);
 			}
 		}
-		else {
-			syslog(1, ' > Select Alexa Response...' . 'None found.');
+		catch (\Exception $e) {
+			syslog(1, ' >>> ERROR LOADING NODE: ' . $e->getMessage());
 		}
-
-		// Look at the body.
-		if ($entity !== null && $entity_field !== null) {
-			if ($entity_field == 'body') {
-				$response = $entity->body->value;
-			}
-		}
-
-		// Check body for approprate response.
-		if ($response !== null) {
-			$response = $this->selectAlexaResponseContext($response, $terms);
-
-			return strip_tags($response);
-		}
-
 
 		return null;
 	}
@@ -700,6 +703,7 @@ class AlexaApiController {
 			$result[$num]['id'] = explode('/', $my_type[1])[1];
 			$result[$num]['lang'] = $my_type[2];
 			$result[$num]['text'] = $doc->tm_rendered_item;
+			$result[$num]['score'] = $doc->score;
 		}
 
 		return $result;
