@@ -109,10 +109,6 @@ class AlexaApiController {
 		// Choose final response.
 		$final = $this->selectAlexaResponse($analysis, $terms);
 
-		if ($analysis !== FALSE && isset($_GET['debug']) && strtolower($_GET['debug']) === 'true') {
-			dsm('<pre>' . print_r($analysis, TRUE) . '</pre>');
-		}
-
 		// Send the response.
 		return array(
 		  "value" => $final,
@@ -672,7 +668,7 @@ class AlexaApiController {
 			   @TODO
 			 
 			 */
-			dsm($e->getMessage());
+			//dsm($e->getMessage());
 		}
 
 		return false;
