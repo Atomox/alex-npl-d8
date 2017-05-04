@@ -55,36 +55,32 @@ http://drupal.eyinnovation.com/api/ask?question=%7B%0A++%22query%22+%3A+%5B+%7B%
 
 ## TODO
 COMPLETE:
-x - NO TICKET -- Docker -- Setup Drupal with Docker.
-x - NO TICKET -- Drupal -- Setup Drupal Server with Composer.
-x - NO TICKET -- Docker -- Setup SOLR to interface with D8.
+- x - NO TICKET -- Docker -- Setup Drupal with Docker.
+- x - NO TICKET -- Drupal -- Setup Drupal Server with Composer.
+- x - NO TICKET -- Docker -- Setup SOLR to interface with D8.
     - `Search API Module`, `Search API SOLR`, Copy SOLR conf from search API solr module.
-x - NO TICKET -- Docker -- SASS watch/compiling.
-x - NO TICKET -- Drupal -- Setup Devel
-x - NO TICKET -- Alexa -- Setup Tomcat and NLP App.
-x - NO TICKET -- SERVER -- Setup PROD server.
+- x - NO TICKET -- Docker -- SASS watch/compiling.
+- x - NO TICKET -- Drupal -- Setup Devel
+- x - NO TICKET -- Alexa -- Setup Tomcat and NLP App.
+- x - NO TICKET -- SERVER -- Setup PROD server.
+- x - NO TICKET -- Alexa -- Amazon config integration. Talk to NLP.
+- x - NO TICKET -- Drupal -- Custom Module to search and return Alexa result.
+- x - NO TICKET -- Pull Annas Changes
+- x - NO TICKET -- Sample content from Jeff
+- x - NO TICKET -- Theme -- Setup Drupal Theme.
+- x - NO TICKET -- Lock down SOLR -- Password Protect? Route through Nginx?
+- x - NO Ticket -- Lock down 8080
+- x - No Ticket -- Lock down tomcat admin
 
 IN PROGRESS:
-- NO TICKET -- Drupal -- Custom Module to search and return Alexa result.
 
 BACKLOG:
 
 BLOCKER:
-- NO TICKET -- Alexa -- Amazon config integration. Talk to NLP.
 
 CRITICAL:
-- NO TICKET -- Pull Annas Changes
-- NO TICKET -- Sample content from Jeff
-- NO TICKET -- Theme -- Setup Drupal Theme.
-
-- NO TICKET -- Lock down SOLR -- Password Protect? Route through Nginx?
-- NO Ticket -- Lock down 8080
-- No Ticket -- Lock down tomcat admin
 
 MAJOR:
-- NO TICKET -- Drupal -- Content Types: Break out Alexa response into individual nodes:
-    - each will have a `response`, `search context`, `node reference`.
-- NO TICKET -- Drupal -- Better page formats to handle site structure.
 - NO TICKET -- Drupal -- CKEditor Plugin to mark Alexa content.
 
 MINOR:
@@ -115,13 +111,20 @@ __Use `solr` as the host__ when configuring Drupal to talk to SOLR.
 
 About EY:
 
- - Alexa, what is EY's Focus?
+ - What is EY's Focus?
  - What acquisitions has EY made in digital?
 
 HOME PAGE:
 
  - What does EY Innovation showcase? (Hints: showcase)
- - Alexa, how many smart objects will there be by 2020?
+ - How many smart objects will there be by 2020?
+
+
+## Working Questions not sent from Jeff:
+
+- Tell me about NorthPoint's strength and experience.
+
+
 
 
 ## Alexa Questions from Adobe Version:
